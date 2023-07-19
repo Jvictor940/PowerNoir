@@ -1,6 +1,8 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const dotenv = require('dotenv');
+const athlete = require('./routes/athlete')
+const user = require('./routes/user')
 
 //In order to read the config file globally
 dotenv.config({ path: './config/config.env' });
@@ -9,6 +11,8 @@ const app = express()
 
 // To read JSON data coming from the user. Parses payload that comes in as json
 app.use(bodyParser.json())
+app.use('/athlete', athlete)
+app.use('/user', user)
 
 // To read our config file we do process.env. If for some reason we it can't be read our fallback is here 
 const PORT = process.env.PORT || 5001 
