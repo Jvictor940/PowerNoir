@@ -4,9 +4,9 @@ const {
     getAthletes,
     createAthlete,
     deleteAthletes,
-    // getAthlete,
-    // putAthlete,
-    // deleteAthlete
+    getAthlete,
+    putAthlete,
+    deleteAthlete
 } = require('../controllers/athleteController')
 
 // root endpoint
@@ -15,9 +15,9 @@ router.route('/')
     .post(createAthlete)
     .delete(deleteAthletes)
 
-// router.route('/:athleteId')
-//     .get(getAthlete)
-//     .put(putAthlete)
-//     .delete(deleteAthlete)
+router.route('/:athleteId')
+    .get(getAthlete)
+    .put(putAthlete)
+    .delete(deleteAthlete)
 
 module.exports = router;

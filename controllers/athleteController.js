@@ -15,12 +15,6 @@ const createAthlete = (req, res, next) => {
     .json({ message: `${req.body.athleteName}'s profile created` })
 }
 
-const putAthlete = (req, res, next) => {
-    res
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({ message: "updated Athlete" })
-}
 
 const deleteAthletes = (req, res, next) => {
     res
@@ -29,9 +23,35 @@ const deleteAthletes = (req, res, next) => {
     .json({ message: "Successfully deleted Athlete"})
 }
 
+// Params 
+// For '/athlete/athleteId'
+const getAthlete = (req, res, next) => {
+    res
+    .status(200)
+    .setHeader('Content-Type', 'application/json')
+    .json( { message: `Show me the athlete with Athlete Id of ${req.params.athleteId}` })
+}
+
+const putAthlete = (req, res, next) => {
+    res
+    .status(200)
+    .setHeader('Content-Type', 'application/json')
+    .json({ message: `Updated the athlete with athleteId of ${req.params.athleteId}` })
+}
+
+const deleteAthlete = (req, res, next) => {
+    res
+    .status(200)
+    .setHeader('Content-Type', 'application/json')
+    .json({ message: `Deleted the athlete with athleteId of ${req.params.athleteId}` })
+}
+
+
 module.exports = {
     getAthletes, 
     createAthlete, 
+    deleteAthletes, 
+    getAthlete, 
     putAthlete, 
-    deleteAthletes
+    deleteAthlete
 }

@@ -4,9 +4,9 @@ const {
     getUsers,
     createUser,
     deleteUsers,
-    // getUser,
-    // putUser,
-    // deleteUser
+    getUser,
+    putUser,
+    deleteUser
 } = require('../controllers/userController.js')
 
 // root endpoint
@@ -15,9 +15,9 @@ router.route('/')
     .post(createUser)
     .delete(deleteUsers)
     
-// router.route('/:userId')
-//     .get(getUser)
-//     .put(putUser)
-//     .delete(deleteUser)
+router.route('/:userId')
+    .get(getUser)
+    .put(putUser)
+    .delete(deleteUser)
 
 module.exports = router;
