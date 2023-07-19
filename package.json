@@ -1,0 +1,23 @@
+{
+  "name": "powernoir_backend",
+  "version": "1.0.0",
+  "description": "Node.js/MongoDB Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sports",
+    "sport",
+    "hbcu",
+    "hbcu sports summit",
+    "powernoir",
+    "football",
+    "junior high",
+    "high school",
+    "college",
+    "nfl"
+  ],
+  "author": "Jerry Victor",
+  "license": "ISC"
+}
