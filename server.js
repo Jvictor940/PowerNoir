@@ -3,6 +3,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const athlete = require('./routes/athlete')
 const user = require('./routes/user')
+const logger = require('./middlewares/logger')
+const erroHandler = require('./middlewares/error')
 
 //In order to read the config file globally
 dotenv.config({ path: './config/config.env' });
@@ -11,6 +13,9 @@ const app = express()
 
 // To read JSON data coming from the user. Parses payload that comes in as json
 app.use(bodyParser.json())
+
+app.use(logger)
+app.use(erroHandler)
 app.use('/athlete', athlete)
 app.use('/user', user)
 
