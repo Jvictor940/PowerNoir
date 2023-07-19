@@ -2,6 +2,40 @@
 // For '/athlete' endpoints
 
 const getAthletes = (req, res, next) => {
+    // query parameter
+    if (Object.keys(req.query).length) {
+        const {
+            firstName,
+            lastName,
+            gender, 
+            age, 
+            grade, 
+            sport, 
+            number,
+            position,
+            state, 
+            school, 
+            rank
+        } = req.query 
+        const filter = [];
+
+        if (firstName) filter.push(firstName)
+        if (lastName) filter.push(lastName)
+        if (gender) filter.push(gender)
+        if (age) filter.push(age)
+        if (grade) filter.push(grade)
+        if (sport) filter.push(sport)
+        if (number) filter.push(number)
+        if (position) filter.push(position)
+        if (state) filter.push(state)
+        if (school) filter.push(school)
+        if (rank) filter.push(rank)
+
+        for (const query of filter) {
+            console.log(`Searching Athlete by ${query}`)
+        }
+    }
+
     res 
     .status(200)
     .setHeader('Content-Type', 'application/json')
