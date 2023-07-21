@@ -5,9 +5,12 @@ const athlete = require('./routes/athlete')
 const user = require('./routes/user')
 const logger = require('./middlewares/logger')
 const erroHandler = require('./middlewares/error')
+const connectDB = require('./config/db')
 
 //In order to read the config file globally
 dotenv.config({ path: './config/config.env' });
+
+connectDB()
 
 const app = express()
 

@@ -42,7 +42,7 @@ const deleteUsers = (req, res, next) => {
     res
     .status(200)
     .setHeader('Content-Type', 'application/json')
-    .json({ message: "Successfully deleted User"})
+    .json({ message: `Successfully deleted ${req.body.userName}`})
 }
 
 // Params 

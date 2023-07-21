@@ -54,7 +54,7 @@ const deleteAthletes = (req, res, next) => {
     res
     .status(200)
     .setHeader('Content-Type', 'application/json')
-    .json({ message: "Successfully deleted Athlete"})
+    .json({ message: `Successfully deleted ${req.body.athletename}'s profile`})
 }
 
 // Params 
