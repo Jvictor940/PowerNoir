@@ -1,3 +1,4 @@
+const Athlete = require('../models/Athlete');
 // Root Methods 
 // For '/athlete' endpoints
 
