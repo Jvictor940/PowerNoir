@@ -27,6 +27,7 @@ const getUsers = async (req, res, next) => {
                 console.log(`Searching Athlete by ${query}`)
             }
         }
+        
     try {
         const users = await User.find()
 
@@ -40,10 +41,10 @@ const getUsers = async (req, res, next) => {
 
 }
 
-const createUser = (req, res, next) => {
+const createUser = async (req, res, next) => {
 
     try {
-        const user = User.create(req.body)
+        const user = await User.create(req.body)
 
         
         res

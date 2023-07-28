@@ -5,7 +5,8 @@ const athlete = require('./routes/athlete')
 const user = require('./routes/user')
 const logger = require('./middlewares/logger')
 const erroHandler = require('./middlewares/error')
-const connectDB = require('./config/db')
+const connectDB = require('./config/db');
+const university = require('./routes/university');
 
 //In order to read the config file globally
 dotenv.config({ path: './config/config.env' });
@@ -21,6 +22,7 @@ app.use(logger)
 app.use(erroHandler)
 app.use('/athlete', athlete)
 app.use('/user', user)
+app.use('/university', university)
 
 // To read our config file we do process.env. If for some reason we it can't be read our fallback is here 
 const PORT = process.env.PORT || 5001 
