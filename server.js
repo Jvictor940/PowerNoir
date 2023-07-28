@@ -30,3 +30,9 @@ const PORT = process.env.PORT || 5001
 const server = app.listen(PORT, () => {
     console.log(`Server is listening on PORT: ${PORT}`)
 })
+
+//automatically kills the server gracefully when we have unhandled rejections
+process.on('unhandledRejection', (err, promise) => {
+    console.log(`Error: ${err.message}`)
+    server.close(() => process.exit(1)) //exits gracefully with exit code of 1(uncaught fatal exception)
+})
