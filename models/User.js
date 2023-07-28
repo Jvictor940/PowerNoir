@@ -25,10 +25,10 @@ const UserSchema = new Schema ({
         ]
     },
     
-    college: {
+    university: {
         type: String, 
         required: true, 
-        maxLength: 20
+        maxLength: 40
     }, 
 
     sport: {
@@ -40,6 +40,25 @@ const UserSchema = new Schema ({
         type: String, 
         required: true, 
         maxLength: 20
+    },
+
+    department: {
+        type: String, 
+    },
+
+    userName: {
+        type: String, 
+        required: true, 
+        unique: true, 
+    },
+
+    email: {
+        type: String, 
+        unique: true, 
+    }, 
+
+    password: {
+        type: String, 
     }
 
 }, {

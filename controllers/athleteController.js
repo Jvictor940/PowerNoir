@@ -2,7 +2,7 @@ const Athlete = require('../models/Athlete');
 // Root Methods 
 // For '/athlete' endpoints
 
-const getAthletes = (req, res, next) => {
+const getAthletes = async (req, res, next) => {
     // query parameter
     if (Object.keys(req.query).length) {
         const {
@@ -37,25 +37,46 @@ const getAthletes = (req, res, next) => {
         }
     }
 
-    res 
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({ message: "Show me all the Athletes" })
+    
+    try {
+        const athletes = await Athlete.find()
+        
+        res 
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json(athletes)
+    } catch (err) {
+        next(err)
+    }
 }
 
-const createAthlete = (req, res, next) => {
-    res
-    .status(201)
-    .setHeader('Content-Type', 'application/json')
-    .json({ message: `${req.body.athleteName}'s profile created` })
+const createAthlete = async (req, res, next) => {
+
+    try {
+        const athlete = await Athlete.create(req.body)
+
+        res
+        .status(201)
+        .setHeader('Content-Type', 'application/json')
+        .json(athlete)
+    } catch (err) {
+        next(err)
+    }
 }
 
 
-const deleteAthletes = (req, res, next) => {
-    res
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({ message: `Successfully deleted ${req.body.athletename}'s profile`})
+const deleteAthletes = async (req, res, next) => {
+    try {
+        const athletes = await Athlete.deleteMany()
+        
+        res
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json({ message: `Successfully deleted ${req.body.athletename}'s profile`})
+    } catch (err) {
+        next(err)
+    }
+
 }
 
 // Params 

@@ -35,17 +35,17 @@ const AthleteSchema = new Schema({
         required: true
     }, 
 
-    GPA: {
+    gpa: {
         type: Number, 
         required: true,
     },
 
-    SAT: {
+    sat: {
         type: Number, 
         required: true,
     },
 
-    ACT: {
+    act: {
         type: Number, 
         required: true,
     },
@@ -89,7 +89,19 @@ const AthleteSchema = new Schema({
         type: Number
     },
 
+    sixtyYardShuttle: {
+        type: Number
+    },
 
+    verticalJump: {
+        type: Number
+    },
+
+    broadJump: {
+        type: Number
+    },
+    
+    
 }, {
     timestamps: true
 })

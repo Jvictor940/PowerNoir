@@ -2,13 +2,14 @@ const User = require('../models/User')
 // Root Methods 
 // For '/user' endpoints
 
-const getUsers = (req, res, next) => {
+const getUsers = async (req, res, next) => {
         // query parameter 
         if (Object.keys(req.query).length) {
             // Able to search through College staff by gender, name, which college they're representing, which sport if they're a coach, and which position they hold. 
             const {
                 gender, 
-                userName, 
+                firstName, 
+                lastName, 
                 college,
                 sport,
                 title 
@@ -16,7 +17,8 @@ const getUsers = (req, res, next) => {
             const filter = [];
     
             if (gender) filter.push(gender)
-            if (userName) filter.push(userName)
+            if (firstName) filter.push(firstName)
+            if (lastName) filter.push(lastName)
             if (sport) filter.push(sport)
             if (college) filter.push(college)
             if (title) filter.push(title)
@@ -25,25 +27,47 @@ const getUsers = (req, res, next) => {
                 console.log(`Searching Athlete by ${query}`)
             }
         }
+    try {
+        const users = await User.find()
 
-    res 
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({ message: "Show me all the Users" })
+        res 
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json(users)
+    } catch (err) {
+        next(err)
+    }
+
 }
 
 const createUser = (req, res, next) => {
-    res
-    .status(201)
-    .setHeader('Content-Type', 'application/json')
-    .json({ message: `${req.body.userName}'s profile created` })
+
+    try {
+        const user = User.create(req.body)
+
+        
+        res
+        .status(201)
+        .setHeader('Content-Type', 'application/json')
+        .json(user)
+    } catch (err) {
+        next(err)
+    }
+
 }
 
-const deleteUsers = (req, res, next) => {
-    res
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({ message: `Successfully deleted ${req.body.userName}`})
+const deleteUsers = async (req, res, next) => {
+
+    try {
+        const deletedUsers = await User.deleteMany()
+
+        res
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json(deleteUsers)
+    } catch (err) {
+        next(err)
+    }
 }
 
 // Params 
