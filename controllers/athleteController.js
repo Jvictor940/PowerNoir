@@ -72,7 +72,7 @@ const deleteAthletes = async (req, res, next) => {
         res
         .status(200)
         .setHeader('Content-Type', 'application/json')
-        .json({ message: `Successfully deleted ${req.body.athletename}'s profile`})
+        .json(deleteAthletes)
     } catch (err) {
         next(err)
     }
@@ -81,25 +81,48 @@ const deleteAthletes = async (req, res, next) => {
 
 // Params 
 // For '/athlete/athleteId'
-const getAthlete = (req, res, next) => {
-    res
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json( { message: `Show me the athlete with Athlete Id of ${req.params.athleteId}` })
+const getAthlete = async (req, res, next) => {
+
+    try {
+        const athlete = await Athlete.findById(req.params.athleteId)
+
+        res
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json(athlete)
+    } catch (err) {
+        next(err)
+    }
 }
 
-const putAthlete = (req, res, next) => {
-    res
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({ message: `Updated the athlete with athleteId of ${req.params.athleteId}` })
+const putAthlete = async (req, res, next) => {
+
+    try {
+        const updatedAthlete = await User.findByIdAndUpdate(req.params.userId, req.body, {new: true})
+
+
+        res
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json(updatedAthlete)
+    } catch (err) {
+        next(err)
+    }
 }
 
-const deleteAthlete = (req, res, next) => {
-    res
-    .status(200)
-    .setHeader('Content-Type', 'application/json')
-    .json({ message: `Deleted the athlete with athleteId of ${req.params.athleteId}` })
+const deleteAthlete = async (req, res, next) => {
+
+    try {
+        const deletedAthlete = await Athlete.findByIdAndDelete(req.params.userId)
+
+
+        res
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json(deletedAthlete)
+    } catch (err) {
+        next(err)
+    }
 }
 
 
