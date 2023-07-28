@@ -14,11 +14,11 @@ const UniversitySchema = new Schema({
     }, 
 
     sportsPrograms: {
-        type: String,
+        type: [String],
     }, 
 
     scholarshipsAndGrants: {
-        type: String, 
+        type: [String], 
     }, 
 
     universityNumber: {
