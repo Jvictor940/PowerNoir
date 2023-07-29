@@ -5,13 +5,13 @@ const UserSchema = new Schema ({
     firstName: {
         type: String, 
         required: true, 
-        maxLength: 10
+        maxLength: [10, 'First Name cannot be more than 10 letters']
     }, 
 
     lastName: {
         type: String, 
         required: true, 
-        maxLength: 10
+        maxLength: [10, 'Last Name cannot have more than 10 letters']
     }, 
 
     gender: {
@@ -54,11 +54,14 @@ const UserSchema = new Schema ({
 
     email: {
         type: String, 
-        unique: true, 
+        unique: true,
+        validate: (email) => validator.isEmail(email)
     }, 
 
     password: {
-        type: String, 
+        type: String,
+        required: true,
+        validate: (password) => validator.isStrongPassword(password)
     }
 
 }, {

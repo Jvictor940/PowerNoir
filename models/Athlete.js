@@ -5,13 +5,18 @@ const AthleteSchema = new Schema({
     firstName: {
         type: String, 
         required: true, 
-        maxLength: 10
+        maxLength: [10, 'First Name cannot have more than 10 letters']
+    },
+
+    middleName: {
+        type: String,  
+        maxLength: [10, 'Middle Name cannot have more than 10 letters']
     }, 
 
     lastName: {
         type: String, 
         required: true, 
-        maxLength: 10
+        maxLength: [10, 'Last Name cannot have more than 10 letters']
     }, 
 
     gender: {
@@ -100,6 +105,19 @@ const AthleteSchema = new Schema({
     broadJump: {
         type: Number
     },
+
+    email: {
+        type: String, 
+        required: true, 
+        unique: true,
+        validate: (email) => validator.isEmail(email)
+    }, 
+
+    password: { 
+        type: String, 
+        required: true, 
+        validate: (password) => validator.isStrongPassword(password)
+    }
     
     
 }, {
