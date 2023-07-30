@@ -5,13 +5,13 @@ const UserSchema = new Schema ({
     firstName: {
         type: String, 
         required: true, 
-        maxLength: [10, 'First Name cannot be more than 10 letters']
+        maxLength: [20, 'First Name cannot be more than 20 letters']
     }, 
 
     lastName: {
         type: String, 
         required: true, 
-        maxLength: [10, 'Last Name cannot have more than 10 letters']
+        maxLength: [20, 'Last Name cannot have more than 20 letters']
     }, 
 
     gender: {

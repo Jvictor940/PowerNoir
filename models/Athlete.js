@@ -5,18 +5,18 @@ const AthleteSchema = new Schema({
     firstName: {
         type: String, 
         required: true, 
-        maxLength: [10, 'First Name cannot have more than 10 letters']
+        maxLength: [20, 'First Name cannot have more than 20 letters']
     },
 
     middleName: {
         type: String,  
-        maxLength: [10, 'Middle Name cannot have more than 10 letters']
+        maxLength: [20, 'Middle Name cannot have more than 20 letters']
     }, 
 
     lastName: {
         type: String, 
         required: true, 
-        maxLength: [10, 'Last Name cannot have more than 10 letters']
+        maxLength: [20, 'Last Name cannot have more than 20 letters']
     }, 
 
     gender: {
