@@ -6,7 +6,10 @@ const {
     deleteAthletes,
     getAthlete,
     putAthlete,
-    deleteAthlete
+    deleteAthlete, 
+    getAthleteRating,
+    postAthleteRating,
+    deleteAthleteRating
 } = require('../controllers/athleteController')
 
 // root endpoint
@@ -19,5 +22,10 @@ router.route('/:athleteId')
     .get(getAthlete)
     .put(putAthlete)
     .delete(deleteAthlete)
+
+router.route('/:athleteId/ratings')
+    .get(getAthleteRating)
+    .post(postAthleteRating)
+    .delete(deleteAthleteRating)
 
 module.exports = router;

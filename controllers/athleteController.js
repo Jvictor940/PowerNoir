@@ -125,6 +125,55 @@ const deleteAthlete = async (req, res, next) => {
     }
 }
 
+// For '/:athleteId/ratings' endpoint
+const getAthleteRating = async (req, res, next) => {
+
+    try {
+        const athlete = await Athlete.findById(req.params.athleteId)
+
+        res
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json(athlete.ratings)
+    } catch (err) {
+        next(err)
+    }
+}
+
+const postAthleteRating = async (req, res, next) => { 
+
+    try {
+        const athlete = await Athlete.findById(req.params.athleteId)
+        athlete.ratings.push(req.body)
+
+        // saves new rating to the Database
+        await athlete.save()
+
+        res
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json(athlete.ratings)
+    } catch (err) {
+        next(err)
+    }
+}
+
+const deleteAthleteRating = async (req, res, next) => {
+
+    try {
+        const athlete = await athlete.findById(req.params.athleteId);
+
+        athlete.ratings = []
+
+        res
+        .status(200)
+        .setHeader('Content-Type', 'application/json')
+        .json( {message: `Deleted rating for ${req.params.athleteId}`})
+    } catch (err) {
+        next(err)
+    }
+}
+
 
 module.exports = {
     getAthletes, 
@@ -132,5 +181,8 @@ module.exports = {
     deleteAthletes, 
     getAthlete, 
     putAthlete, 
-    deleteAthlete
+    deleteAthlete, 
+    getAthleteRating, 
+    postAthleteRating, 
+    deleteAthleteRating
 }

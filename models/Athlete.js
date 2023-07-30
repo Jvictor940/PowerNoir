@@ -1,5 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const validator = require('validator');
+
+const RatingSchema = new Schema ({
+    rating: {
+        type: Number, 
+        min: [1, 'Must rate'],
+        max: 5
+    }, 
+
+    notes: {  //will be available to just the specific university
+        type: String, 
+        maxLength: [500, 'Cannot be more than 500 characters']
+    },
+
+    author: {  //will be available to just the specific university
+        type: Schema.Types.ObjectId, // grabbing from MongoDB
+        ref: 'User'
+
+    }
+})
 
 const AthleteSchema = new Schema({
     firstName: {
@@ -117,7 +137,9 @@ const AthleteSchema = new Schema({
         type: String, 
         required: true, 
         validate: (password) => validator.isStrongPassword(password)
-    }
+    }, 
+
+    ratings: [RatingSchema]
     
     
 }, {
