@@ -69,4 +69,14 @@ const UserSchema = new Schema ({
     timestamps: true
 })
 
+UserSchema.pre('save', function(next){
+    this.firstName = this.firstName.toUpperCase()
+
+    next()
+})
+
+UserSchema.post('save', function(next){
+    this.firstName = this.firstName.toLowerCase()
+})
+
 module.exports = mongoose.model('User', UserSchema);

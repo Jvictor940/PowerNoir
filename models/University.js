@@ -29,4 +29,14 @@ const UniversitySchema = new Schema({
     timestamps: true
 })
 
+UniversitySchema.pre('save', function(next){
+    this.universityName = this.universityName.toUpperCase()
+
+    next()
+})
+
+UniversitySchema.post('save', function(next){
+    this.universityName = this.universityName.toLowerCase()
+})
+
 module.exports = mongoose.model('University', UniversitySchema);

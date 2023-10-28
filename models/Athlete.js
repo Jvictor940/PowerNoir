@@ -148,4 +148,14 @@ const AthleteSchema = new Schema({
     timestamps: true
 })
 
+AthleteSchema.pre('save', function(next){
+    this.firstName = this.firstName.toUpperCase()
+
+    next()
+})
+
+AthleteSchema.post('save', function(next){
+    this.firstName = this.firstName.toLowerCase()
+})
+
 module.exports = mongoose.model('Athlete', AthleteSchema);
