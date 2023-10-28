@@ -12,7 +12,8 @@ const getUsers = async (req, res, next) => {
                 lastName, 
                 college,
                 sport,
-                title 
+                title,
+                // limit
             } = req.query 
             const filter = [];
     
@@ -27,7 +28,7 @@ const getUsers = async (req, res, next) => {
                 console.log(`Searching Athlete by ${query}`)
             }
         }
-        
+
     try {
         const users = await User.find()
 

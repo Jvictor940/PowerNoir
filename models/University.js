@@ -5,12 +5,12 @@ const UniversitySchema = new Schema({
     universityName: {
         type: String, 
         required: true, 
-        maxLength: 40, 
+        maxLength: [40, 'University name cannot have more than 40 characters'] 
     }, 
 
     universityDescription: {
         type: String, 
-        maxLength: 2000
+        maxLength: [2000, 'University description can not have more than 2000 characters']
     }, 
 
     sportsPrograms: {

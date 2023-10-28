@@ -8,7 +8,8 @@ const getUniversities = async (req, res, next) => {
         const { 
             universityName,
             sportsPrograms,
-            scholarshipsAndGrants, 
+            scholarshipsAndGrants,
+            limit
         } = req.query 
         const filter = []; 
         

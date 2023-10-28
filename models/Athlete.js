@@ -25,12 +25,14 @@ const AthleteSchema = new Schema({
     firstName: {
         type: String, 
         required: true, 
-        maxLength: [20, 'First Name cannot have more than 20 letters']
+        maxLength: [20, 'First Name cannot have more than 20 letters'],
+        validate: (firstName) => validator.isAlphanumeric(firstName)
     },
 
     middleName: {
         type: String,  
-        maxLength: [20, 'Middle Name cannot have more than 20 letters']
+        maxLength: [20, 'Middle Name cannot have more than 20 letters'],
+        validate: (middleName) => validator.isAlphanumeric(middleName)
     }, 
 
     lastName: {

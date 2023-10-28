@@ -4,8 +4,12 @@ const Athlete = require('../models/Athlete');
 
 const getAthletes = async (req, res, next) => {
     // query parameter
+    const filter = {};
+    const options = {};
     if (Object.keys(req.query).length) {
         const {
+            // sortByFirstName,
+            // sortByLastName,
             firstName,
             lastName,
             gender, 
@@ -16,30 +20,60 @@ const getAthletes = async (req, res, next) => {
             position,
             state, 
             school, 
-            rank
-        } = req.query 
-        const filter = [];
+            rank,
+            limit
+        } = req.query
 
-        if (firstName) filter.push(firstName)
-        if (lastName) filter.push(lastName)
-        if (gender) filter.push(gender)
-        if (age) filter.push(age)
-        if (grade) filter.push(grade)
-        if (sport) filter.push(sport)
-        if (number) filter.push(number)
-        if (position) filter.push(position)
-        if (state) filter.push(state)
-        if (school) filter.push(school)
-        if (rank) filter.push(rank)
 
-        for (const query of filter) {
-            console.log(`Searching Athlete by ${query}`)
+
+        if (firstName) filter.firstName = true;
+        if (lastName) filter.lastName = true;
+        if (gender) filter.gender = true;
+        if (age) filter.age = true;
+        if (grade) filter.grade = true;
+        if (sport) filter.sport = true;
+        if (number) filter.number = true;
+        if (position) filter.position = true;
+        if (state) filter.state = true;
+        if (school) filter.school = true;
+        if (rank) filter.rank = true;
+        // if (firstName) filter.push(firstName)
+        // if (lastName) filter.push(lastName)
+        // if (gender) filter.push(gender)
+        // if (age) filter.push(age)
+        // if (grade) filter.push(grade)
+        // if (sport) filter.push(sport)
+        // if (number) filter.push(number)
+        // if (position) filter.push(position)
+        // if (state) filter.push(state)
+        // if (school) filter.push(school)
+        // if (rank) filter.push(rank)
+
+        if (limit) options.limit = limit;
+        if (sortByAthlete) options.sort = {
+            firstName: sortByAthlete,
+            // lastName,
+            // gender,
+            // age,
+            // grade, 
+            // sport,
+            // number,
+            // position, 
+            // state, 
+            // school,
+            // rank
         }
+
+        console.log(filter, options)
+
+        // for (const query of filter) {
+        //     console.log(`Searching Athlete by ${query}`)
+        // }
     }
 
     
     try {
-        const athletes = await Athlete.find()
+        const athletes = await Athlete.find({}, filter, options)
         
         res 
         .status(200)
@@ -164,6 +198,8 @@ const deleteAthleteRating = async (req, res, next) => {
         const athlete = await athlete.findById(req.params.athleteId);
 
         athlete.ratings = []
+
+        await result.save()
 
         res
         .status(200)
