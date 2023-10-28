@@ -4,22 +4,26 @@ const University = require('../models/University')
 
 const getUniversities = async (req, res, next) => {
 
+    const filter = {};
+    const options = {};
     if (Object.keys(req.query).length) {
         const { 
+            sortByUniversityName,
             universityName,
             sportsPrograms,
             scholarshipsAndGrants,
             limit
-        } = req.query 
-        const filter = []; 
+        } = req.query
         
-        if (universityName) filter.push(universityName)
-        if (sportsPrograms) filter.push(sportsPrograms)
-        if (scholarshipsAndGrants) filter.push(scholarshipsAndGrants)
-        
-        for (const query of filter) {
-            console.log(`Searching University by ${query}`)
+        if (universityName) filter.universityName = true
+        if (sportsPrograms) filter.sportsPrograms = true
+        if (scholarshipsAndGrants) filter.scholarshipsAndGrants = true
+
+        if (limit) options.limit = limit;
+        if (sortByUniversityName) options.sort = {
+            universityName: sortByUniversityName
         }
+        console.log(filter, options)
     }
         
     try {

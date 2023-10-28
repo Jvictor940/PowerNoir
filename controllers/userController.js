@@ -4,29 +4,33 @@ const User = require('../models/User')
 
 const getUsers = async (req, res, next) => {
         // query parameter 
+        const filter = {};
+        const options = {};
         if (Object.keys(req.query).length) {
             // Able to search through College staff by gender, name, which college they're representing, which sport if they're a coach, and which position they hold. 
             const {
+                sortByUser,
                 gender, 
                 firstName, 
                 lastName, 
                 college,
                 sport,
                 title,
-                // limit
-            } = req.query 
-            const filter = [];
+                limit
+            } = req.query
     
-            if (gender) filter.push(gender)
-            if (firstName) filter.push(firstName)
-            if (lastName) filter.push(lastName)
-            if (sport) filter.push(sport)
-            if (college) filter.push(college)
-            if (title) filter.push(title)
-    
-            for (const query of filter) {
-                console.log(`Searching Athlete by ${query}`)
+            if (gender) filter.gender = true
+            if (firstName) filter.firstName = true
+            if (lastName) filter.lastName = true
+            if (sport) filter.sport = true
+            if (college) filter.college = true
+            if (title) filter.title = true
+
+            if (limit) options.limit = limit;
+            if (sortByUser) options.sort = {
+                lastName: sortByUser
             }
+            console.log(filter, options)
         }
 
     try {

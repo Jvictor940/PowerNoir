@@ -8,7 +8,7 @@ const getAthletes = async (req, res, next) => {
     const options = {};
     if (Object.keys(req.query).length) {
         const {
-            // sortByFirstName,
+            sortByAthlete,
             // sortByLastName,
             firstName,
             lastName,
@@ -51,8 +51,8 @@ const getAthletes = async (req, res, next) => {
 
         if (limit) options.limit = limit;
         if (sortByAthlete) options.sort = {
-            firstName: sortByAthlete,
-            // lastName,
+            // firstName: sortByAthlete,
+            lastName: sortByAthlete
             // gender,
             // age,
             // grade, 
